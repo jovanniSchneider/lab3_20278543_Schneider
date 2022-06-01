@@ -6,8 +6,9 @@ public class Dobble {
     private Card[] cartas;
     private int cantidadCartas;
 
-    public Dobble(List elementos){
-
+    public Dobble(Card[] cartas, int cantidadCartas) {
+        this.cartas = cartas;
+        this.cantidadCartas = cantidadCartas;
     }
 
     public Card[] getCartas() {
