@@ -1,22 +1,20 @@
 package Lab3Paradigmas;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class Card {
     private int cantidadSimbolos;
-    private List elementos;
+    private int [] elementos;
 
-    public Card(List elementos){
-        this.elementos = elementos;
-        this.cantidadSimbolos = this.elementos.size();
+    public Card(int [] elementos){
+        int [] aux = elementos.clone();
+        this.elementos = aux;
+        this.cantidadSimbolos = this.elementos.length;
     }
 
     public int getCantidadSimbolos() {
         return cantidadSimbolos;
     }
 
-    public List getElementos() {
+    public int[] getElementos() {
         return elementos;
     }
 
@@ -24,7 +22,7 @@ public class Card {
         this.cantidadSimbolos = cantidadSimbolos;
     }
 
-    public void setElementos(List elementos) {
+    public void setElementos(int [] elementos) {
         this.elementos = elementos;
     }
 }
