@@ -1,12 +1,15 @@
 package Lab3Paradigmas;
 
 import Lab3Paradigmas.Controlador.Dobble;
+import Lab3Paradigmas.Controlador.DobbleGame;
 
 public class Main {
-    public static void main(String[] args) {
-        Dobble cartas2 = new Dobble(3,7);
-        cartas2.shufle();
-        cartas2.mostrarCartas();
-        System.out.println(cartas2.getNthCard(4).findTotalCards());
+    public static void main(String[] args) throws CloneNotSupportedException {
+        DobbleGame juego = new DobbleGame();
+        juego.registrarJugador("Jovanni");
+        juego.registrarJugador("Pepe");
+        juego.crearCardsSet(6,31);
+        juego.repartirCartas(3);
+        System.out.println(juego.toString());
     }
 }

@@ -2,8 +2,9 @@ package Lab3Paradigmas.Controlador;
 
 public interface Juego {
     void registrarJugador(String nombre);
+    void crearCardsSet(int cantidadSimbolos, int maxCard);
     void cambiarTurno();
-    void verTurno();
-    void verEstado();
-    void repartirCartas();
+    String verTurno();
+    String verEstado();
+    void repartirCartas(int cantidad);
 }

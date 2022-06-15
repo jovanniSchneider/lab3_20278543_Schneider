@@ -13,4 +13,7 @@ public interface CardsSet {
 
     //Para mezclar el conjunto
     void shufle();
+
+    //Para verificar que el cardset es correcto
+    boolean esCorrecto();
 }

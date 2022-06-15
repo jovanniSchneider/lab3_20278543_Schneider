@@ -3,12 +3,10 @@ package Lab3Paradigmas.Controlador;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
-
 public class Dobble implements CardsSet {
     private List<Card> cartas;
     private int cantidadCartas;
     private List<Card> missingCards;
-
     public Dobble(int cantidadSimbolos, int maxCards) {
         int n = cantidadSimbolos-1;
         cartas = new ArrayList<Card>();
@@ -94,6 +92,56 @@ public class Dobble implements CardsSet {
             }
         }
     }
+
+    @Override
+    public boolean esCorrecto() {
+        int n = this.cartas.get(0).getCantidadSimbolos()-1;
+        List<Integer> primos = nPrimos(n);
+        boolean flag = false;
+        for(Integer i: primos){
+            if(this.powOf(n,i))
+                flag = true;
+        }
+        if (!(this.isPrime(n)))
+            return false;
+
+        for (int i = 0; i < this.cantidadCartas; i++) {
+            for (int j = i+1; j < this.cantidadCartas; j++) {
+                if (this.cartas.get(i).whichCoincide(this.cartas.get(j)) == -1)
+                    return false;
+            }
+        }
+        if (flag)
+            return true;
+        return false;
+    }
+
+    private boolean isPrime(int n){
+        for (int i = 2; i < n; i++) {
+            if (n%i == 0)
+                return false;
+        }
+        return true;
+    }
+    private List<Integer> nPrimos(int n){
+        List <Integer> primos = new ArrayList<Integer>();
+        for (int i = 2; i < n; i++) {
+            if (this.isPrime(i))
+                primos.add(i);
+        }
+        return primos;
+    }
+
+    private boolean powOf(int a, int b){
+        while (a!=1){
+            if (a%b == 0)
+                a/=b;
+            else
+                return false;
+        }
+        return true;
+    }
+
     public int getCantidadCartas() {
         return this.cantidadCartas;
     }
@@ -101,6 +149,7 @@ public class Dobble implements CardsSet {
     public void setCantidadCartas(int cantidadCartas) {
         this.cantidadCartas = cantidadCartas;
     }
+
 
 
 }
