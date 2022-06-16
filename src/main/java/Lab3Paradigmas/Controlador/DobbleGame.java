@@ -2,7 +2,11 @@ package Lab3Paradigmas.Controlador;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 
+/**
+ *
+ */
 public class DobbleGame implements Juego {
     List<Player> jugadores;
     int cantidadJugadores = 0;
@@ -10,7 +14,6 @@ public class DobbleGame implements Juego {
     int turno = 1; //Es el ID del jugador
     Estado estado;
     List<Card> mazo;
-    GameMode gameMode;
 
     public DobbleGame(){
         this.jugadores = new ArrayList<Player>();
@@ -22,6 +25,7 @@ public class DobbleGame implements Juego {
     @Override
     public void registrarJugador(String nombre) {
         Player jugador = new Player(nombre);
+        jugador.setID(this.cantidadJugadores+1);
         this.jugadores.add(jugador);
         this.cantidadJugadores+=1;
     }
@@ -29,11 +33,12 @@ public class DobbleGame implements Juego {
     @Override
     public void crearCardsSet(int cantidadSimbolos, int maxCard) {
         this.cardsSet = new Dobble(cantidadSimbolos,maxCard);
+        this.setEstado(Estado.CREADO);
     }
 
     @Override
     public void cambiarTurno() {
-        if (this.turno == this.cantidadJugadores -1)
+        if (this.turno == this.cantidadJugadores)
             this.turno = 1;
         else
             this.turno+=1;
@@ -95,6 +100,16 @@ public class DobbleGame implements Juego {
                 '}';
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        DobbleGame that = (DobbleGame) o;
+        return cantidadJugadores == that.cantidadJugadores && turno == that.turno &&
+                Objects.equals(jugadores, that.jugadores) && Objects.equals(cardsSet, that.cardsSet) &&
+                estado == that.estado && Objects.equals(mazo, that.mazo);
+    }
+
     public List<Player> getJugadores() {
         return jugadores;
     }
@@ -141,13 +156,5 @@ public class DobbleGame implements Juego {
 
     public void setMazo(List<Card> mazo) {
         this.mazo = mazo;
-    }
-
-    public GameMode getGameMode() {
-        return gameMode;
-    }
-
-    public void setGameMode(GameMode gameMode) {
-        this.gameMode = gameMode;
     }
 }

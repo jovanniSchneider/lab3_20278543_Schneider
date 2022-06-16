@@ -14,10 +14,7 @@ public class Card implements Carta{
 
     @Override
     public String toString() {
-        return "\nCard{" +
-                "cantidadSimbolos = " + cantidadSimbolos +
-                ", elementos = " + Arrays.toString(elementos) +
-                "}";
+        return Arrays.toString(elementos);
     }
     public int findTotalCards(){
         int n = this.cantidadSimbolos - 1;
