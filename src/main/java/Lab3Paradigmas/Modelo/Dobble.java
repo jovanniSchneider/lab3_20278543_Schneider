@@ -1,4 +1,4 @@
-package Lab3Paradigmas.Controlador;
+package Lab3Paradigmas.Modelo;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -58,11 +58,9 @@ public class Dobble implements CardsSet {
     }
 
     public String toString() {
-        return "Dobble{" +
-                "cantidadCartas=" + cantidadCartas +
+        return "cantidadCartas=" + cantidadCartas +
                 "\ncartas=\n" + cartas.toString() +
-                "\nmissingCards=\n" + missingCards.toString() +
-                '}';
+                "\nmissingCards=\n" + missingCards.toString();
     }
 
     public void mostrarCartas(){
@@ -97,6 +95,7 @@ public class Dobble implements CardsSet {
     public boolean esCorrecto() {
         int n = this.cartas.get(0).getCantidadSimbolos()-1;
         List<Integer> primos = nPrimos(n);
+        System.out.println(primos.toString());
         boolean flag = false;
         for(Integer i: primos){
             if(this.powOf(n,i))
@@ -125,7 +124,7 @@ public class Dobble implements CardsSet {
     }
     private List<Integer> nPrimos(int n){
         List <Integer> primos = new ArrayList<Integer>();
-        for (int i = 2; i < n; i++) {
+        for (int i = 2; i <= n; i++) {
             if (this.isPrime(i))
                 primos.add(i);
         }

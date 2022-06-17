@@ -1,4 +1,4 @@
-package Lab3Paradigmas.Controlador;
+package Lab3Paradigmas.Modelo;
 
 public interface Juego {
     void registrarJugador(String nombre);

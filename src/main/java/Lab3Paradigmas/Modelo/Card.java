@@ -1,4 +1,4 @@
-package Lab3Paradigmas.Controlador;
+package Lab3Paradigmas.Modelo;
 
 import java.util.Arrays;
 
@@ -14,7 +14,7 @@ public class Card implements Carta{
 
     @Override
     public String toString() {
-        return Arrays.toString(elementos);
+        return Arrays.toString(elementos)+"\n";
     }
     public int findTotalCards(){
         int n = this.cantidadSimbolos - 1;

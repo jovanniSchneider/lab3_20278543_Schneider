@@ -1,7 +1,7 @@
-package Lab3Paradigmas.Controlador;
+package Lab3Paradigmas.Modelo;
 
+import java.util.Objects;
 import java.util.Scanner;
-import java.util.function.Function;
 
 public class StackMode implements GameMode {
     DobbleGame game;
@@ -11,7 +11,7 @@ public class StackMode implements GameMode {
     public StackMode(DobbleGame game) {
         this.game = game;
     }
-    public void jugar(){
+    public void jugar(int cartasARepartir){
         Scanner scanner = new Scanner(System.in);
         this.game.setEstado(Estado.INICIADO);
         this.game.repartirCartas(0);
@@ -50,5 +50,24 @@ public class StackMode implements GameMode {
             }
         }
         return this.ganador;
+    }
+
+    @Override
+    public String toString() {
+        return "Stack";
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        StackMode stackMode = (StackMode) o;
+        return Objects.equals(game, stackMode.game) && Objects.equals(ganador, stackMode.ganador) &&
+                Objects.equals(carta1, stackMode.carta1) && Objects.equals(carta2, stackMode.carta2);
+    }
+
+    @Override
+    public int hashCode() {
+        return 0;
     }
 }

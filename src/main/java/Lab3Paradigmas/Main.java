@@ -1,17 +1,14 @@
 package Lab3Paradigmas;
 
-import Lab3Paradigmas.Controlador.Dobble;
-import Lab3Paradigmas.Controlador.DobbleGame;
-import Lab3Paradigmas.Controlador.StackMode;
+import Lab3Paradigmas.Controlador.Control;
+import Lab3Paradigmas.Modelo.Dobble;
+import Lab3Paradigmas.Modelo.DobbleGame;
+import Lab3Paradigmas.Modelo.StackMode;
+import Lab3Paradigmas.Vista.Menu;
 
 public class Main {
     public static void main(String[] args) throws CloneNotSupportedException {
-        DobbleGame juego = new DobbleGame();
-        juego.registrarJugador("Jovanni");
-        juego.registrarJugador("Pepe");
-        juego.crearCardsSet(4,13);
-        StackMode game = new StackMode(juego);
-        game.jugar();
-        System.out.println("Ganador: "+game.obtenerGanador().toString());
+        Menu menu = new Menu();
+        menu.MenuPrincipal();
     }
 }

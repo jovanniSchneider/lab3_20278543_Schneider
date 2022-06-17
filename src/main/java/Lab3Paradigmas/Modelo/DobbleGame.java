@@ -1,4 +1,4 @@
-package Lab3Paradigmas.Controlador;
+package Lab3Paradigmas.Modelo;
 
 import java.util.ArrayList;
 import java.util.List;
