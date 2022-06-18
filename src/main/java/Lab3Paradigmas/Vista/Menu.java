@@ -1,19 +1,27 @@
 package Lab3Paradigmas.Vista;
 
 import Lab3Paradigmas.Controlador.Control;
-import Lab3Paradigmas.Modelo.EHS;
-import Lab3Paradigmas.Modelo.StackMode;
-
-import java.util.InputMismatchException;
 import java.util.Scanner;
 
+/**
+ * Clase que representa un menu
+ */
 public class Menu {
     int opcion;
     private Control controlador;
 
+    /**
+     * Constructor de instancia de un menu
+     */
     public Menu() {
         this.controlador = null;
     }
+
+    /**
+     * Pide el nombre de un jugador a registrar
+     * @param scanner para poder ingresar datos por teclado
+     * @return el nombre ingresado por el usuario
+     */
     public String pedirNombre(Scanner scanner){
         scanner.nextLine();
         System.out.print("Ingrese el nombre del jugador: ");
@@ -21,6 +29,12 @@ public class Menu {
         scanner.reset();
         return nombre;
     }
+
+    /**
+     * Pide un numero entero y se asegura de que asi sea
+     * @param scanner para poder ingresar datos por teclado
+     * @return el dato ingresado por el usuario
+     */
     public int pedirOpcion(Scanner scanner){
         boolean flagEntry = true;
         int opcion = 0;
@@ -35,6 +49,14 @@ public class Menu {
         }
         return opcion;
     }
+
+    /**
+     * Pide un numero entero entre un rango de nuemeros y se asegura de que asi sea
+     * @param min cota inferior del rango
+     * @param max cota superior del rango
+     * @param scanner para poder ingresar datos por tecladoss
+     * @return el dato ingresado por el usuario
+     */
     public int pedirOpcion(int min, int max, Scanner scanner){
         boolean flagEntry = true;
         int opcion = 0;
@@ -52,6 +74,10 @@ public class Menu {
         }
         return opcion;
     }
+
+    /**
+     * Se encarga de mostrar el menu principal y llammar a controlador para que ejecutar las acciones elegidas
+     */
     public void MenuPrincipal() {
         Scanner scanner = new Scanner(System.in);
         boolean flagContinue = true;
@@ -92,7 +118,10 @@ public class Menu {
         scanner.close();
     }
 
-
+    /**
+     * Se encarga de crear un juego nuevo
+     * @param scanner para leer datos por teclado
+     */
     public void menuOpcion1(Scanner scanner){
         System.out.println("¿Cuantos simbolos desea por carta?:");
         int numE = pedirOpcion(scanner);
@@ -113,6 +142,11 @@ public class Menu {
             this.controlador.getGame().getCardsSet().mostrarCartas();
         }
     }
+
+    /**
+     * Se encarga de registrar un nuevo jugador
+     * @param scanner para poder ingresar datos por teclados
+     */
     public void menuOpcion2(Scanner scanner){
         if (this.controlador!=null){
             System.out.println();
@@ -124,6 +158,11 @@ public class Menu {
         }else
             System.out.println("Para registrar un jugador primero debe crear un juego");
     }
+
+    /**
+     * Se encarga de elegir el modo de juego
+     * @param scanner para poder ingresar datos por teclado
+     */
     public void menuOpcion3(Scanner scanner) {
         if (this.controlador != null) {
             System.out.println("Los modos de juego disponibles para jugar son los siguientes:");
@@ -149,6 +188,9 @@ public class Menu {
         }
     }
 
+    /**
+     * Muestra en pantalla una descripcion de cada modo de juego
+     */
     public void menuOpcion4(){
         System.out.println("Stack: Se disponen el conjunto de cartas apiladas por el reverso en el tablero.\n" +
                 " Luego se retiran las dos primeras cartas de la pila y se voltean para revelar su contenido\n" +
@@ -164,11 +206,16 @@ public class Menu {
                 " vuelve a recoger su propia carta. El juego continúa hasta que uno de los jugadores quede sin cartas\n" +
                 " en su poder, quién será el ganador.\n");
     }
+
+    /**
+     * Se encarga de ejecutar la partida en el modo de juego elegido
+     */
     public void menuOpcion5() {
         try {
             if (this.controlador.getGame().getCantidadJugadores() >= 2) {
                 System.out.println("Modo de juego: " + this.controlador.getModoDeJuego().toString());
                 this.controlador.jugar();
+                System.out.println("Ganador = "+this.controlador.obtenerGanador().toString());
                 System.out.println("Para volver a jugar debe crear un juego nuevo");
             } else {
                 System.out.println("Para poder jugar debe haber al menos 2 jugadores registrados");

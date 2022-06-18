@@ -2,20 +2,35 @@ package Lab3Paradigmas.Modelo;
 
 import java.util.Objects;
 import java.util.Scanner;
-import java.util.function.Predicate;
 
+/**
+ * Clase que represeta el modo de juego Empty Hand Stack
+ */
 public class EHS implements GameMode{
     DobbleGame game;
     Player ganador;
 
+    /**
+     * Constructor de EHS
+     * @param game es un juego valido con el que se va a jugar
+     */
     public EHS(DobbleGame game) {
         this.game = game;
     }
 
+    /**
+     * Verifica si un jugador se quedo sin cartas en la mano
+     * @param jugador es el jugador a verificar
+     * @return true o false
+     */
     private boolean sinCartas(Player jugador){
             return jugador.getMano().size() == 0;
     }
 
+    /**
+     * Implementacion del metodo de interface
+     * Realiza toda la partida del modo de juego
+     */
     @Override
     public void jugar(int cartasARepartir) {
         Scanner scanner = new Scanner(System.in);
@@ -50,6 +65,9 @@ public class EHS implements GameMode{
         scanner.close();
     }
 
+    /**
+     * Implementacion del metodo de interface
+     */
     @Override
     public Player obtenerGanador() {
         for (int i = 0; i < this.game.jugadores.size(); i++) {
@@ -59,21 +77,25 @@ public class EHS implements GameMode{
         return this.ganador;
     }
 
+    /**
+     * Representa la clase en un string entendible para un usuario
+     * @return la representacion de la clase
+     */
     @Override
     public String toString() {
         return "Empty Hand Stack";
     }
 
+    /**
+     * Verifica si una instancia es igual a otro objeto
+     * @param o objeto con el que se desea comparar
+     * @return true o false
+     */
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         EHS ehs = (EHS) o;
         return Objects.equals(game, ehs.game) && Objects.equals(ganador, ehs.ganador);
-    }
-
-    @Override
-    public int hashCode() {
-        return 0;
     }
 }

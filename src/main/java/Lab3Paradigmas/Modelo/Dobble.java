@@ -3,10 +3,20 @@ package Lab3Paradigmas.Modelo;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
+
+/**
+ * Clase que representa un set de cartas
+ */
 public class Dobble implements CardsSet {
     private List<Card> cartas;
     private int cantidadCartas;
     private List<Card> missingCards;
+
+    /**
+     * Constructor de un set de cartas
+     * @param cantidadSimbolos cantidad de simbolos por carta
+     * @param maxCards cantidad de cartas que desea el usuario
+     */
     public Dobble(int cantidadSimbolos, int maxCards) {
         int n = cantidadSimbolos-1;
         cartas = new ArrayList<Card>();
@@ -45,6 +55,11 @@ public class Dobble implements CardsSet {
         this.cantidadCartas = this.cartas.size();
     }
 
+    /**
+     *Implementacion de metodo de interface
+     * @param donde 1 para guardar en el arreglo cartas y 2 para guardar en el arreglo missing cards
+     */
+    @Override
     public void addCarta(int[] simbolos, int donde) {
         Card carta = new Card(simbolos);
         switch (donde){
@@ -57,26 +72,28 @@ public class Dobble implements CardsSet {
         }
     }
 
+    /**
+     * Representa la clase en un string entendible para un usuario
+     * @return la representacion de la clase
+     */
     public String toString() {
         return "cantidadCartas=" + cantidadCartas +
                 "\ncartas=\n" + cartas.toString() +
                 "\nmissingCards=\n" + missingCards.toString();
     }
 
+    /**
+     * Implementacion de metodo de interface
+     */
+    @Override
     public void mostrarCartas(){
         System.out.println(this.toString());
     }
 
-    public List<Card> getCartas() {
-        return this.cartas;
-    }
-
-    public Card getNthCard(int n){
-        if (n < this.cantidadCartas){
-            return this.getCartas().get(n);
-        }else
-            return null;
-    }
+    /**
+     * Implementacion de metodo de interface
+     */
+    @Override
     public void shufle(){
         Random random = new Random();
         int indice;
@@ -91,6 +108,10 @@ public class Dobble implements CardsSet {
         }
     }
 
+
+    /**
+     * Implementacion de metodo de interface
+     */
     @Override
     public boolean esCorrecto() {
         int n = this.cartas.get(0).getCantidadSimbolos()-1;
@@ -115,6 +136,11 @@ public class Dobble implements CardsSet {
         return false;
     }
 
+    /**
+     * Verifica si un numero es primo
+     * @param n numero a verificar
+     * @return true o false
+     */
     private boolean isPrime(int n){
         for (int i = 2; i < n; i++) {
             if (n%i == 0)
@@ -122,6 +148,12 @@ public class Dobble implements CardsSet {
         }
         return true;
     }
+
+    /**
+     * Encuentra los numeros primos desde 2 hasta n
+     * @param n hasta que numero se quieren encontrar primos
+     * @return una lista con los numeros primos
+     */
     private List<Integer> nPrimos(int n){
         List <Integer> primos = new ArrayList<Integer>();
         for (int i = 2; i <= n; i++) {
@@ -130,6 +162,13 @@ public class Dobble implements CardsSet {
         }
         return primos;
     }
+
+    /**
+     * Verifica si un numero es potencia de otro
+     * @param a numero a verificar si es potencia
+     * @param b numero del que a debiese ser potencia
+     * @return true o false
+     */
 
     private boolean powOf(int a, int b){
         while (a!=1){
@@ -141,14 +180,34 @@ public class Dobble implements CardsSet {
         return true;
     }
 
+
+    /**
+     * Implementacion de metodo de interface
+     * @param n el indice de la carta que se desea obtener
+     * @return
+     */
+    @Override
+    public Card getNthCard(int n){
+        if (n < this.cantidadCartas){
+            return this.getCartas().get(n);
+        }else
+            return null;
+    }
+
+    /**
+     * getter para la cantidad de cartas
+     * @return
+     */
+
     public int getCantidadCartas() {
         return this.cantidadCartas;
     }
 
-    public void setCantidadCartas(int cantidadCartas) {
-        this.cantidadCartas = cantidadCartas;
+    /**
+     * getter para la lista de cartas
+     * @return
+     */
+    public List<Card> getCartas() {
+        return this.cartas;
     }
-
-
-
 }

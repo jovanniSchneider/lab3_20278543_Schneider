@@ -5,7 +5,7 @@ import java.util.List;
 import java.util.Objects;
 
 /**
- *
+ * Clase que representa un juego
  */
 public class DobbleGame implements Juego {
     List<Player> jugadores;
@@ -15,13 +15,18 @@ public class DobbleGame implements Juego {
     Estado estado;
     List<Card> mazo;
 
+    /**
+     * Constructor de la instancia de clase
+     */
     public DobbleGame(){
         this.jugadores = new ArrayList<Player>();
         this.mazo = new ArrayList<>();
         estado = Estado.SINCREAR;
     }
 
-
+    /**
+     * Implementacion de metodo de interface
+     */
     @Override
     public void registrarJugador(String nombre) {
         Player jugador = new Player(nombre);
@@ -30,11 +35,18 @@ public class DobbleGame implements Juego {
         this.cantidadJugadores+=1;
     }
 
+    /**
+     * Implementacion de metodo de interface
+     */
     @Override
     public void crearCardsSet(int cantidadSimbolos, int maxCard) {
         this.cardsSet = new Dobble(cantidadSimbolos,maxCard);
         this.setEstado(Estado.CREADO);
     }
+
+    /**
+     * Implementacion de metodo de interface
+     */
 
     @Override
     public void cambiarTurno() {
@@ -44,6 +56,9 @@ public class DobbleGame implements Juego {
             this.turno+=1;
     }
 
+    /**
+     * Implementacion de metodo de interface
+     */
     @Override
     public String verTurno() {
         for(Player p: this.jugadores){
@@ -53,6 +68,9 @@ public class DobbleGame implements Juego {
         return "No hay un turno establecido";
     }
 
+    /**
+     * Implementacion de metodo de interface
+     */
     @Override
     public String verEstado() {
         String salida = "Estado sin definir";
@@ -74,6 +92,10 @@ public class DobbleGame implements Juego {
         }
         return salida;
     }
+
+    /**
+     * Implementacion de metodo de interface
+     */
     @Override
     public void repartirCartas(int cantidad){
         //Para revolver las cartas
@@ -89,6 +111,10 @@ public class DobbleGame implements Juego {
         }
     }
 
+    /**
+     * Representa la clase en un string entendible para un usuario
+     * @return la representacion de la clase
+     */
     @Override
     public String toString() {
         return "DobbleGame{" +
@@ -100,6 +126,12 @@ public class DobbleGame implements Juego {
                 '}';
     }
 
+
+    /**
+     * Verifica si una instancia es igual a otro objeto
+     * @param o objeto con el que se desea comparar
+     * @return true o false
+     */
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -110,20 +142,15 @@ public class DobbleGame implements Juego {
                 estado == that.estado && Objects.equals(mazo, that.mazo);
     }
 
+    /**
+     * ------------Getters y Setters----------------
+     */
     public List<Player> getJugadores() {
         return jugadores;
     }
 
-    public void setJugadores(List<Player> jugadores) {
-        this.jugadores = jugadores;
-    }
-
     public int getCantidadJugadores() {
         return cantidadJugadores;
-    }
-
-    public void setCantidadJugadores(int cantidadJugadores) {
-        this.cantidadJugadores = cantidadJugadores;
     }
 
     public Dobble getCardsSet() {
@@ -134,27 +161,7 @@ public class DobbleGame implements Juego {
         this.cardsSet = cardsSet;
     }
 
-    public int getTurno() {
-        return turno;
-    }
-
-    public void setTurno(int turno) {
-        this.turno = turno;
-    }
-
-    public Estado getEstado() {
-        return estado;
-    }
-
     public void setEstado(Estado estado) {
         this.estado = estado;
-    }
-
-    public List<Card> getMazo() {
-        return mazo;
-    }
-
-    public void setMazo(List<Card> mazo) {
-        this.mazo = mazo;
     }
 }

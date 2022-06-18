@@ -12,7 +12,7 @@ version '1.0-SNAPSHOT'
 repositories {
     mavenCentral()
 }
-mainClassName = 'Main'
+mainClassName = 'Lab3Paradigmas/Main/Main'
 run {
     standardInput = System.in
 }
